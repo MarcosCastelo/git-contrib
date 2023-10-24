@@ -60,7 +60,7 @@ func fillCommits(email string, path string, commits map[int]int) map[int]int {
 	err = iterator.ForEach(func(c *object.Commit) error {
 		daysAgo := countDaysSinceDate(c.Author.When) + offset
 
-		if c.Author.Email != email {
+		if c.Author.Name != email {
 			return nil
 		}
 
@@ -78,8 +78,8 @@ func fillCommits(email string, path string, commits map[int]int) map[int]int {
 }
 
 func getBeginningOfDay(t time.Time) time.Time {
-	year, month, day := t.Date()
-	startOfDay := time.Date(year, month, day, 0, 0, 0, 0, t.Location())
+	// year, month, day := t.Date()
+	startOfDay := time.Now()
 	return startOfDay
 }
 
