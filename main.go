@@ -11,9 +11,9 @@ func main() {
 	startingTime := time.Now().UTC()
 
 	var folder string
-	var email string
+	var name string
 	flag.StringVar(&folder, "add", "", "add a new folder to scan for Git repositories")
-	flag.StringVar(&email, "email", "your@email.com", "the email to scan")
+	flag.StringVar(&name, "name", "username", "the username to scan")
 	flag.Parse()
 
 	if folder != "" {
@@ -23,7 +23,7 @@ func main() {
 		return
 	}
 
-	utils.Stats(email)
+	utils.Stats(name)
 	endingTime := time.Now().UTC()
 	fmt.Println(endingTime.Sub(startingTime))
 }

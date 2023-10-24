@@ -1,2 +1,3 @@
 # CLI to view git contrib developed in go
+
 code based on this tutorial (Flavio Copes VISUALIZE YOUR LOCAL GIT CONTRIBUTIONS WITH GO)[https://flaviocopes.com/go-git-contributions/]

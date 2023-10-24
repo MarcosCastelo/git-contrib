@@ -15,12 +15,12 @@ const daysInLastSixMonths = 183
 const weeksInLastSixMonths = 26
 const outOfRange = 99999
 
-func Stats(email string) {
-	commits := processRepositories(email)
+func Stats(name string) {
+	commits := processRepositories(name)
 	printCommitStats(commits)
 }
 
-func processRepositories(email string) map[int]int {
+func processRepositories(name string) map[int]int {
 	filePath := GetDotFilePath()
 	repos, err := ParseFileLinesToSlice(filePath)
 	if err != nil {
@@ -34,13 +34,13 @@ func processRepositories(email string) map[int]int {
 	}
 
 	for _, path := range repos {
-		commits = fillCommits(email, path, commits)
+		commits = fillCommits(name, path, commits)
 	}
 
 	return commits
 }
 
-func fillCommits(email string, path string, commits map[int]int) map[int]int {
+func fillCommits(name string, path string, commits map[int]int) map[int]int {
 	repo, err := git.PlainOpen(path)
 	if err != nil {
 		panic(err)
@@ -60,7 +60,7 @@ func fillCommits(email string, path string, commits map[int]int) map[int]int {
 	err = iterator.ForEach(func(c *object.Commit) error {
 		daysAgo := countDaysSinceDate(c.Author.When) + offset
 
-		if c.Author.Name != email {
+		if c.Author.Name != name {
 			return nil
 		}
 
