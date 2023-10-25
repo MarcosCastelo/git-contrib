@@ -78,8 +78,8 @@ func fillCommits(name string, path string, commits map[int]int) map[int]int {
 }
 
 func getBeginningOfDay(t time.Time) time.Time {
-	// year, month, day := t.Date()
-	startOfDay := time.Now()
+	year, month, day := t.Date()
+	startOfDay := time.Date(year, month, day, 0, 0, 0, 0, t.Location())
 	return startOfDay
 }
 
